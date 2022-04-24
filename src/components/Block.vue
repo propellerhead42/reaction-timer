@@ -23,6 +23,7 @@ export default {
     updated() {
         console.log("updated");
     },
+    unmounted() {},
     methods: {
         mSecToSec(sec) {
             let str = Math.round(sec).toString();
