@@ -29,7 +29,8 @@
   },
   methods: {
     start() {
-      this.delay = 2000 + Math.random() * 5000; //returns number between 2000 and 7000
+      //returns number between 2000 and 7000
+      this.delay = 2000 + Math.random() * 5000; 
       this.isPlaying = true;
       this.showResults = false;
     },
