@@ -1,15 +1,19 @@
 <template>
-  <h1>Reaction Timer</h1>
-  <button @click="start">Start</button>
-  <div class="block">
-    
+  <div class="flex-container">
+      <h1>Reaction Timer</h1>
+      <button @click="start" :disabled="isPlaying">Start</button>
+      <div class="box-co" v-if="isPlaying">
+        <Block :delay="delay"></Block>
+      </div>
   </div>
 </template>
 
 <script>
-export default {
+  import Block from "./components/Block.vue";
+
+  export default {
   name: 'App',
-  components: {},
+  components: {Block},
   data() {
     return {
       isPlaying: false,
@@ -19,8 +23,8 @@ export default {
   },
   methods: {
     start() {
-      this.delay = 2000 + Math.random() * 5000 //returns number between 2000 and 7000
-      console.log(this.delay);
+      this.delay = 2000 + Math.random() * 5000; //returns number between 2000 and 7000
+      this.isPlaying = true;
     }
   }
 }
@@ -31,8 +35,46 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  button{
+    padding: 0.5rem 2rem;
+   
+    border: none;
+    font: inherit;
+    border-radius: 0.25rem;
+
+    outline: 2px solid white;
+    color: white;
+    background: black;
+
+    &:hover{
+      cursor: pointer;
+      outline: 2px solid black;
+      color: black;
+      background: white;
+
+    }
+
+    &:disabled {
+      color: rgb(60, 60, 60);
+      background: gray;
+      cursor: none;
+
+      &:hover {
+        outline: none;
+      }
+    }
+
+  }
+
 }
 </style>
