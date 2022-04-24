@@ -4,14 +4,28 @@
           <h3>Results:</h3>
       </div>
       <div class="results">
-          <p>{{score}} ms</p>
+          <p>{{score}} ms You have {{rank}}</p>
       </div>
   </div>
 </template>
 
 <script>
 export default {
-    props: ['score']
+    props: ['score'],
+    data() {
+        return {
+            rank: null
+        }
+    },
+    mounted() {
+        if(this.score < 250){
+           this.rank = "ninja fingers";
+        } else if (this.score < 400) {
+            this.rank = "rapid fingers";
+        } else {
+            this.rank = "snail fingers"
+        }
+    }
 }
 </script>
 
