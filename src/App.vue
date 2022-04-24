@@ -1,20 +1,23 @@
 <template>
+      <div v-if="showResults">
+        <Results :score="score"></Results>
+      </div>
   <div class="flex-container">
       <h1>Reaction Timer</h1>
       <button @click="start" :disabled="isPlaying">Start</button>
       <div v-if="isPlaying">
         <Block :delay="delay" @end="endGame"></Block>
       </div>
-      <p v-if="showResults">Reaction Time: {{score}} ms</p>
   </div>
 </template>
 
 <script>
+  import Results from "./components/Results.vue";
   import Block from "./components/Block.vue";
 
   export default {
   name: 'App',
-  components: {Block},
+  components: {Block, Results},
   data() {
     return {
       isPlaying: false,
@@ -53,6 +56,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  margin-bottom: 2rem;
 
   button{
     padding: 0.5rem 2rem;
