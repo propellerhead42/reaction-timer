@@ -2,7 +2,6 @@
   <div class="block" v-if="showBlock" @click="stopTimer">
      <p>click me</p> 
      <p>{{ seconds }} seconds</p>
-     <p>{{ reactionTime }} reacted milisec</p>
   </div>
 </template>
 
@@ -39,6 +38,7 @@ export default {
         },
         stopTimer(){
             clearInterval(this.timer);
+            this.$emit("end", this.reactionTime);
         }
     }
 

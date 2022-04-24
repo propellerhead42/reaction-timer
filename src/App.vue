@@ -2,9 +2,10 @@
   <div class="flex-container">
       <h1>Reaction Timer</h1>
       <button @click="start" :disabled="isPlaying">Start</button>
-      <div class="box-co" v-if="isPlaying">
-        <Block :delay="delay"></Block>
+      <div v-if="isPlaying">
+        <Block :delay="delay" @end="endGame"></Block>
       </div>
+      <p v-if="showResults">Reaction Time: {{score}} ms</p>
   </div>
 </template>
 
@@ -17,7 +18,9 @@
   data() {
     return {
       isPlaying: false,
-      delay: null
+      delay: null,
+      score: null,
+      showResults: false
 
     }
   },
@@ -25,6 +28,12 @@
     start() {
       this.delay = 2000 + Math.random() * 5000; //returns number between 2000 and 7000
       this.isPlaying = true;
+      this.showResults = false;
+    },
+    endGame(reactionTime) {
+      this.score = reactionTime;
+      this.isPlaying = false;
+      this.showResults = true;
     }
   }
 }
